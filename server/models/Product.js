@@ -25,7 +25,7 @@ const ProductSchema = new mongoose.Schema({
     },
 });
 
-// Create a variabke out of the schema
+// Create a variable out of the schema
 const ProductModel = mongoose.model("products", ProductSchema);
 
 // Export it so that there is access to ProductModel outside of this file
