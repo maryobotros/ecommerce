@@ -80,7 +80,48 @@ app.delete("/deleteAllProducts", async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
+});
+
+// ************************************************************** Cart API Routes **************************************************************
+// POST a new cart item 
+// URL: http://localhost:3001/addToCart
+app.post("/addToCart", async (req, res) => {
+    try {
+        // Create a new cart item based on what's passed into the body and save it
+        const cartItem = req.body;
+        const newCartItem = CartModel(cartItem);
+        await newCartItem.save();
+
+        // Construct the response and send it back
+        res.json(newCartItem);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+
+// DELETE a cart item by ID
+// URL: http://localhost:3001/deleteFromCart/:cartItemId
+app.delete("/deleteFromCart/:cartItemId", async (req, res) => {
+    try {
+        // Get the cart item ID
+        const cartItemId = req.params.cartItemId;
+
+        // Attempt to find the cartItem by ID and remove it
+        const deletedCartItem = await CartModel.findByIdAndDelete(cartItemId);
+
+        // If the cartItem is not found, return 404 status
+        if(!deletedCartItem) {
+            return res.status(404).json({ message: "Activity not found" });
+        }
+
+        // Cart item successfully deleted, return a success message
+        res.json({ message: "Cart item deleted successfully" });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 
 // Tell API to start on port 3001
