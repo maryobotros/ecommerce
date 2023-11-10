@@ -8,7 +8,11 @@ app.use(cors());
 
 
 // Give access to the Product Model
-const ProductModel =require('./models/Product');
+const ProductModel = require('./models/Product');
+
+
+// Connect the database to MongoDB
+mongoose.connect("mongodb+srv://user123:Password123@cluster0.dpambmc.mongodb.net/ecommerce?retryWrites=true&w=majority");
 
 
 // GET all the products
@@ -44,10 +48,6 @@ app.post("/insertProduct", async (req, res) => {
         res.status(500).json(err);
     }
 });
-
-
-// Connect the database to MongoDB
-mongoose.connect("mongodb+srv://user123:Password123@cluster0.dpambmc.mongodb.net/ecommerce?retryWrites=true&w=majority");
 
 
 // Tell API to sttar on port 3001
