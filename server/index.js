@@ -9,6 +9,7 @@ app.use(cors());
 
 // Give access to the Product Model
 const ProductModel = require('./models/Product');
+const CartModel = require('./models/Cart');
 
 
 // Connect the database to MongoDB
@@ -46,6 +47,22 @@ app.post("/insertProduct", async (req, res) => {
         res.json(newProduct);
     } catch (err) { 
         res.status(500).json(err);
+    }
+});
+
+// POST multiplpe products
+// URL: http://localhost:3001/insertProducts
+app.post("/insertProducts", async (req, res) => {
+    try {
+        const products = req.body // Assuming req.body is an array of products
+
+        // Insrt multiple products into the database
+        const newProducts = await ProductModel.insertMany(products);
+
+        // Construct the response and send it back
+        res.status(201).json(newProducts);
+    } catch (err) {
+        res.sendStatus(500).json(err);
     }
 });
 
