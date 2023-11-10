@@ -50,6 +50,7 @@ app.post("/insertProduct", async (req, res) => {
     }
 });
 
+
 // POST multiplpe products
 // URL: http://localhost:3001/insertProducts
 app.post("/insertProducts", async (req, res) => {
@@ -62,12 +63,27 @@ app.post("/insertProducts", async (req, res) => {
         // Construct the response and send it back
         res.status(201).json(newProducts);
     } catch (err) {
-        res.sendStatus(500).json(err);
+        res.status(500).json(err);
     }
 });
 
+// DELETE all products
+// URL: http://localhost:3001/deleteAllProducts
+app.delete("/deleteAllProducts", async (req, res) => {
+    try {
+        // Delete all products from the database
+        await ProductModel.deleteMany({});
 
-// Tell API to sttar on port 3001
+        // Construct the response and send it back
+        res.json({ message: "All products have been deleted successfully" });
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+
+// Tell API to start on port 3001
 app.listen(3001, () => {
     console.log("Server is running on port 3001");
 });
