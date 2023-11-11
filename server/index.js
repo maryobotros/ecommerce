@@ -83,6 +83,23 @@ app.delete("/deleteAllProducts", async (req, res) => {
 });
 
 // ************************************************************** Cart API Routes **************************************************************
+// GET all cart items
+// url: http://localhost:3001/getCartItems
+app.get("/getCartItems", async (req, res) => {
+    try {
+        // Construct the query
+        const query = {};
+
+        // Search the database
+        const cartItems = await CartModel.find(query);
+
+        // Construct the response and send it back
+        res.json(cartItems);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
 // POST a new cart item 
 // URL: http://localhost:3001/addToCart
 app.post("/addToCart", async (req, res) => {
@@ -117,6 +134,15 @@ app.delete("/deleteFromCart/:cartItemId", async (req, res) => {
 
         // Cart item successfully deleted, return a success message
         res.json({ message: "Cart item deleted successfully" });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// POST to add a product to the cart
+app.post("/addProductToCart", async (req, res) => {
+    try {
+        
     } catch (err) {
         res.status(500).json(err);
     }

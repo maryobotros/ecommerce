@@ -28,8 +28,12 @@ export default App;
 
 
 // Next steps
+// * Create a function and list to add and keep track of cart items
 // * Figure out how to create an API route that will add a product into the cart
 //   x Work on the frontend to list out all of the products
 //   x Make an array that will keep track of all of the products
 //   - When a user tries to add one of the items to the cart
-//      *
+//      * Find the product from the products collection
+//      * If the product doesnt exost send an error otherwise,
+//      * Check if the cart already contains the item
+//      * 

@@ -36,6 +36,7 @@ function Home() {
               <div className="product">
                 <h3> Model: {val.model}</h3>
               </div>
+              <button >Add to cart</button>
             </div>
           );
         })}
