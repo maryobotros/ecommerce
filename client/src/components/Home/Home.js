@@ -2,7 +2,7 @@ import "./Home.css";
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
-function Home({ listOfCartItems }) {
+function Home({ listOfCartItems, setListOfCartItems }) {
   // STATES
   const [listOfProducts, setListOfProducts] = useState([]);
 
@@ -33,17 +33,35 @@ function Home({ listOfCartItems }) {
     const productIsInCart = listOfCartItems.find((cartItem) => cartItem.model === productToAddToCart.model);
     // If the product is in the cart
     if(productIsInCart) {
-        // Increae the quantity of the item that is in the cart list
-        listOfCartItems.map((val) => {
-            return val.model === productIsInCart.model ? {quatity: productIsInCart.quantity += 1} : val;
-        });
+        // Increae the quantity of the item that is in the cart list by 1
+        const updatedCart = listOfCartItems.map((val) => 
+            val.model === productIsInCart.model ? { ...val, quatity: productIsInCart.quantity + 1} : val
+        );
+
+        setListOfCartItems(updatedCart);
     } 
     // Otherwise if the product doesn't exist in the cart list
     else {
         // Create a new Cart item using the information from the product
-        
+        Axios.post("http://localhost:3001/addToCart", {
+            productId: productToAddToCart._id,
+            model: productToAddToCart.model,
+            brand: productToAddToCart.brand,
+            color: productToAddToCart.color,
+            price: productToAddToCart.price,
+            quantity: 1
+        })
+            .then((response) => {
+                // Update state based on the response data from the server
+                setListOfCartItems([...listOfCartItems, response.data]);
+
+                alert((productToAddToCart.model + " Item added to the cart"));
+            })
+            .catch(() => {
+                alert("Failed to add item to cart");
+            });
     }
-  }
+  };
 
   console.log("List of Cart Items: ", listOfCartItems);
   // APP

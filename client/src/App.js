@@ -35,10 +35,10 @@ function App() {
         <div className="content">
           <Routes>
             {/* Route for Home page */}
-            <Route path="/" element={<Home listOfCartItems={listOfCartItems}/>} />
+            <Route path="/" element={<Home listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems}/>} />
 
             {/* Route for Cart page */}
-            <Route path="cart" element={<Cart listOfCartItems={listOfCartItems}/>} />
+            <Route path="cart" element={<Cart listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems}/>} />
           </Routes>
         </div>
       </div>
