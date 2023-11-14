@@ -2,7 +2,7 @@ import "./Home.css";
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
-function Home() {
+function Home({ listOfCartItems }) {
   // STATES
   const [listOfProducts, setListOfProducts] = useState([]);
 
@@ -23,6 +23,29 @@ function Home() {
     fetchProducts();
   }, []); // Empty dependency array ensures this effect runs once after the initial render
 
+
+  // Function to add an item to the cart
+  const addItemToCart = (id) => {
+    // Find the product by ID from the listOfProducts list
+    const productToAddToCart = listOfProducts.find((product) => product._id === id);
+
+    // Check if the product already exists in the cart list
+    const productIsInCart = listOfCartItems.find((cartItem) => cartItem.model === productToAddToCart.model);
+    // If the product is in the cart
+    if(productIsInCart) {
+        // Increae the quantity of the item that is in the cart list
+        listOfCartItems.map((val) => {
+            return val.model === productIsInCart.model ? {quatity: productIsInCart.quantity += 1} : val;
+        });
+    } 
+    // Otherwise if the product doesn't exist in the cart list
+    else {
+        // Create a new Cart item using the information from the product
+        
+    }
+  }
+
+  console.log("List of Cart Items: ", listOfCartItems);
   // APP
   return (
     <div className="home">
@@ -34,9 +57,9 @@ function Home() {
           return (
             <div className="productContainer">
               <div className="product">
-                <h3> Model: {val.model}</h3>
+                <h3> Model: {val.model} </h3>
               </div>
-              <button >Add to cart</button>
+              <button onClick={() => addItemToCart(val._id)}> Add to cart </button>
             </div>
           );
         })}

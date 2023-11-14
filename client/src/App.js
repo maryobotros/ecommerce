@@ -1,11 +1,33 @@
 import "./App.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Cart from "./components/Cart/Cart";
 
 function App() {
+  // STATES
+  const [listOfCartItems, setListOfCartItems] = useState([]);
+
+  // FUNCTIONS
+  // useEffect function to send a get request to insert all cart items into listOfCartItems
+  useEffect(() => {
+    // Function to fetch cartItems
+    const fetchCartItems = async () => {
+      try {
+        const response = await Axios.get("http://localhost:3001/getCartItems");
+        setListOfCartItems(response.data);
+      } catch (err) {
+        alert("Failed to fetch list of cart items");
+      }
+    };
+
+    // Call the fetchCartItems function
+    fetchCartItems();
+  }, []); // Empty dependency array ensures this effect runs once after the initial render
+
+  // APP
   return (
     <Router>
       <div className="App">
@@ -13,10 +35,10 @@ function App() {
         <div className="content">
           <Routes>
             {/* Route for Home page */}
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home listOfCartItems={listOfCartItems}/>} />
 
             {/* Route for Cart page */}
-            <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={<Cart listOfCartItems={listOfCartItems}/>} />
           </Routes>
         </div>
       </div>
