@@ -33,13 +33,11 @@ function Home({ listOfCartItems, setListOfCartItems }) {
     const productIsInCart = listOfCartItems.find((cartItem) => cartItem.model === productToAddToCart.model);
     // If the product is in the cart
     if(productIsInCart) {
-        // Increae the quantity of the item that is in the cart list by 1
-        const updatedCart = listOfCartItems.map((val) => 
-            val.model === productIsInCart.model ? { ...val, quatity: productIsInCart.quantity + 1} : val
-        );
-
-        setListOfCartItems(updatedCart);
-    } 
+        // Increae the quantity of the item that is in the cart list
+        listOfCartItems.map((val) => {
+            return val.model === productIsInCart.model ? {quatity: productIsInCart.quantity += 1} : val;
+        });
+    }
     // Otherwise if the product doesn't exist in the cart list
     else {
         // Create a new Cart item using the information from the product
