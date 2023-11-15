@@ -31,13 +31,26 @@ function Home({ listOfCartItems, setListOfCartItems }) {
 
     // Check if the product already exists in the cart list
     const productIsInCart = listOfCartItems.find((cartItem) => cartItem.model === productToAddToCart.model);
-    // If the product is in the cart
-    if(productIsInCart) {
-        // Increae the quantity of the item that is in the cart list
-        listOfCartItems.map((val) => {
-            return val.model === productIsInCart.model ? {quatity: productIsInCart.quantity += 1} : val;
 
-        });
+    // If the product is in the cart
+    if (productIsInCart) {
+        // Get the cart item's quantity
+        const newQuantity = productIsInCart.quantity + 1;
+
+        // Get the cart item's id
+        const cartItemId = productIsInCart._id;
+
+        // Increase the quantity on the backend
+        Axios.put(`http://localhost:3001/updateCartItem/${cartItemId}`, {quantity: newQuantity})
+          .then(() => {
+            // Increase the quantity of the item that is in the cart list
+            setListOfCartItems((listOfCartItems).map((val) => {
+              return val.model === productIsInCart.model ? { ...val, quantity: val.quantity + 1 } : val;
+            }))
+          })
+          .catch(() => {
+            alert("Failed to update cart");
+          });
     }
     // Otherwise if the product doesn't exist in the cart list
     else {
