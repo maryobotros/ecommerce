@@ -58,7 +58,9 @@ export default App;
 //      x Find the product from the products collection
 //      x If the product doesnt exost send an error otherwise,
 //      x Check if the cart already contains the item
-//      - Create a put API route to update the item in teh cart collection with the updated quatity 
+//      * Create a put API route to update the item in teh cart collection with the updated quatity 
 //        then use this API route in the addItemToCart function
-
-//       
+// x In Cart.js, create a delete button and a function for that button that will delete an item from the cart
+//    x If the cart item has a quatity of 1, just delete it
+//    x Otherwise, decrement the quantity value
+// * In Cart.js, create a add one more button

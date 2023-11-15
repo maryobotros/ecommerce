@@ -43,10 +43,12 @@ function Home({ listOfCartItems, setListOfCartItems }) {
         // Increase the quantity on the backend
         Axios.put(`http://localhost:3001/updateCartItem/${cartItemId}`, {quantity: newQuantity})
           .then(() => {
-            // Increase the quantity of the item that is in the cart list
+            // Increment the quantity of the item in listOfCartItems
             setListOfCartItems((listOfCartItems).map((val) => {
               return val.model === productIsInCart.model ? { ...val, quantity: val.quantity + 1 } : val;
             }))
+
+            alert("Another " + productToAddToCart.model + " chair added to the cart");
           })
           .catch(() => {
             alert("Failed to update cart");
@@ -67,7 +69,7 @@ function Home({ listOfCartItems, setListOfCartItems }) {
                 // Update state based on the response data from the server
                 setListOfCartItems([...listOfCartItems, response.data]);
 
-                alert((productToAddToCart.model + " Item added to the cart"));
+                alert((productToAddToCart.model + " chair added to the cart"));
             })
             .catch(() => {
                 alert("Failed to add item to cart");
