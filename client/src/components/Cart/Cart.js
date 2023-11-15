@@ -7,10 +7,13 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
 
 
   // FUNCTIONS
+  // Function to delete items from the cart
   const deleteCartItem = (id) => {
 
+    // Find the cart item to delete
     const cartItemToDelete = listOfCartItems.find((cartItem) => cartItem._id === id);
 
+    // Find the quantity value of the cart item to delete
     const quantityOfCartItemToDelete = cartItemToDelete.quantity;
     
     // If the quantity of the cart item is 1
@@ -27,6 +30,7 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
 
     // Otherwise if the quantity of the cart item is greater than 1
     else if (quantityOfCartItemToDelete > 1) {
+      // Get the new quantity
       const newQuantity = quantityOfCartItemToDelete - 1
       
       // Edit the cart item in the database to decrement quantity value by 1
@@ -45,6 +49,33 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
     }
   };
 
+
+  // Function to add another item to the cart
+  const addOneMore = (id) => {
+    // Find the cart item to update
+    const cartItemToUpdate = listOfCartItems.find((cartItem) => cartItem._id === id);
+
+    // Find the quatity calue of the cart item to update
+    const quantityOfCartItemToUpdate = cartItemToUpdate.quantity
+
+    // Get the new quantity
+    const newQuantity = quantityOfCartItemToUpdate + 1;
+
+    // Edit the quantity value of the cart item by 1
+    Axios.put(`http://localhost:3001/updateCartItem/${id}`, {quantity: quantityOfCartItemToUpdate})
+      .then(() => {
+        setListOfCartItems((listOfCartItems).map((val) => {
+          return val._id === cartItemToUpdate._id ? { ...val, quantity: newQuantity} : val;
+        }))
+
+        // alert("Added one more " + cartItemToUpdate.model + " to the cart");
+      })
+      .catch(() => {
+        alert("Failed to add 1 more item to the cart");
+      })
+  };
+
+
   // APP
   return (
     <div className="cart">
@@ -60,6 +91,7 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
                 <h4> Quantity: {val.quantity} </h4>
               </div>
               <button onClick={() => deleteCartItem(val._id)}>Delete</button>
+              <button onClick={() => addOneMore(val._id)}>Add one more</button>
             </div>
           );
         })}
