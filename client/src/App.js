@@ -50,12 +50,15 @@ export default App;
 
 
 // Next steps
-// * Create a function and list to add and keep track of cart items
-// * Figure out how to create an API route that will add a product into the cart
+// x Create a function and list to add and keep track of cart items
+// x Figure out how to create an API route that will add a product into the cart
 //   x Work on the frontend to list out all of the products
 //   x Make an array that will keep track of all of the products
-//   - When a user tries to add one of the items to the cart
-//      * Find the product from the products collection
-//      * If the product doesnt exost send an error otherwise,
-//      * Check if the cart already contains the item
-//      * 
+//   x When a user tries to add one of the items to the cart
+//      x Find the product from the products collection
+//      x If the product doesnt exost send an error otherwise,
+//      x Check if the cart already contains the item
+//      - Create a put API route to update the item in teh cart collection with the updated quatity 
+//        then use this API route in the addItemToCart function
+
+//       

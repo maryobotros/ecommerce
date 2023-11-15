@@ -34,8 +34,8 @@ function Cart({ listOfCartItems }) {
           return (
             <div className="cartItemContainer">
               <div className="cartItem">
-                <h3> Model: {val.model} </h3>
-                <h1> Quantity: {val.quantity} </h1>
+                <h2> Model: {val.model} </h2>
+                <h4> Quantity: {val.quantity} </h4>
               </div>
             </div>
           );

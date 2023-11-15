@@ -139,10 +139,25 @@ app.delete("/deleteFromCart/:cartItemId", async (req, res) => {
     }
 });
 
-// POST to add a product to the cart
-app.post("/addProductToCart", async (req, res) => {
+
+// PUT request uodate a cart item
+// URL: http://localhost:3001/updateCartItem/:cartItemId
+app.put("/updateCartItem/:cartItemId", async (req, res) => {
     try {
-        
+        // Get the cart items's ID and new info
+        const cartItemId = req.params.cartItemId;
+        const updatedCartItemData = req.body;
+
+        // Attempt to find the cart item by ID and update it with the new data
+        const updatedCartItem = await CartModel.findByIdAndUpdate(cartItemId, updatedCartItemData, { new: true });
+
+        // If the cart item is not found, return 404 status
+        if (!updatedCartItem) {
+            res.status(404).json({ message: "Cart item not found" });
+        }
+
+        // Return the updated cart item
+        res.json(updatedCartItem);
     } catch (err) {
         res.status(500).json(err);
     }

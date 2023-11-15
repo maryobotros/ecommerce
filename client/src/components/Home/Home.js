@@ -36,6 +36,7 @@ function Home({ listOfCartItems, setListOfCartItems }) {
         // Increae the quantity of the item that is in the cart list
         listOfCartItems.map((val) => {
             return val.model === productIsInCart.model ? {quatity: productIsInCart.quantity += 1} : val;
+
         });
     }
     // Otherwise if the product doesn't exist in the cart list
