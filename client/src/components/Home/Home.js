@@ -81,7 +81,6 @@ function Home({ listOfCartItems, setListOfCartItems }) {
   // APP
   return (
     <div className="home">
-      <h1>Home page</h1>
 
       {/* Product List */}
       <div className="listOfProducts">
@@ -90,8 +89,8 @@ function Home({ listOfCartItems, setListOfCartItems }) {
             <div className="productContainer">
               <div className="product">
                 <img className="product-image" src={`http://localhost:3001/images/${val.imageUrl}`} alt={"img unavailable"}/>
-                <h3> {val.brand} </h3>
-                <h3> {val.model} </h3>
+                <h3> {val.brand} {val.model}</h3>
+                <h4> ${val.price} </h4>
               </div>
               <button className="add-to-cart-button" onClick={() => addItemToCart(val._id)}> Add to cart </button>
             </div>

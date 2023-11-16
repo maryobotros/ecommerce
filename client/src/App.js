@@ -65,4 +65,15 @@ export default App;
 //    x Otherwise, decrement the quantity value
 // x In Cart.js, create a add one more button
 // x Work on the css for the Home page
-// - Work on the css for the Navbar
+// x Work on the css for the Navbar
+// - Add the Hermanmiller logo at the center of the Navbar
+// - Style the Cart page
+// Use React router to make a Product page that the user can navigate to by clicking on the product card from either Home or Cart page
+// - Use Google login
+
+
+
+
+// Future ideas
+// - If you are on the homepage, Home should be highlighted in the navbar
+// - Add a cart logo

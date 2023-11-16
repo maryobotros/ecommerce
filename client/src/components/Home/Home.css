@@ -1,6 +1,7 @@
 /* Home.css */
 .home {
     padding: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
   }
   
   .listOfProducts {
@@ -11,7 +12,7 @@
   .productContainer {
     border: 2px solid #8f8f8f;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
   }
   
   .product {
@@ -55,4 +56,3 @@
       grid-template-columns: 1fr;
     }
   }
-  
