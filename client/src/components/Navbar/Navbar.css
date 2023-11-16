@@ -1,16 +1,25 @@
 .navbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
-    background-color: #d0d0d0; /* Background color for the navbar */
+    background-color: #ffffff; /* Background color for the navbar */
     color: rgb(0, 0, 0); /* Text color */
     padding: 10px 20px; /* Padding for the navbar */
     border-radius: 8px;
     margin-left: 20px;
     margin-right: 20px;
   
-    /* Optional: Add box-shadow for a slight depth effect */
+    /* Box-shadow for a slight depth effect */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .logo-image {
+    margin: 0 auto; /* This centers the logo-image div horizontally */
+  }
+
+  .logo-image img{
+    height: 150px;
+    width: auto;
   }
   
   .navbar h1 {

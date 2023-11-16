@@ -4,6 +4,12 @@ import './Navbar.css';
 function Navbar() {
     return (
         <nav className="navbar">
+            <div className="logo-image">
+                <Link to="/">
+                    <img src={"http://localhost:3001/images/hermanmiller.jpg"} alt={"img unavailable"}/>
+                </Link>
+            </div>
+            
             <h1>
                 <Link to="/">Home</Link>
             </h1>
