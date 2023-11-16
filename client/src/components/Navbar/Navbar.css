@@ -27,12 +27,13 @@
     border: 2px solid black;
     border-radius: 8px;
     background-color: rgb(247, 146, 146);
+    margin-top: 100px;
 
     transition: background-color 0.4s ease;
   }
 
   .navbar h1:hover {
-    background-color: rgb(122, 139, 175);
+    background-color: rgb(238, 201, 201);
   }
   
   .navbar h1 a {

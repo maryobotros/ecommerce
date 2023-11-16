@@ -1,29 +1,12 @@
 import "./Home.css";
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import Axios from "axios";
 
-function Home({ listOfCartItems, setListOfCartItems }) {
+function Home({ listOfCartItems, setListOfCartItems, listOfProducts, setListOfProducts }) {
   // STATES
-  const [listOfProducts, setListOfProducts] = useState([]);
 
   // FUNCTIONS
-  // useEffect function to send a get request to insert all products into listOfProducts array
-  useEffect(() => {
-    // Function to fetch products
-    const fetchProducts = async () => {
-      try {
-        const response = await Axios.get("http://localhost:3001/getProducts");
-        setListOfProducts(response.data);
-      } catch (err) {
-        alert("Failed to fetch list of products");
-      }
-    };
-
-    // Call the fetchProducts function
-    fetchProducts();
-  }, []); // Empty dependency array ensures this effect runs once after the initial render
-
-
   // Function to add an item to the cart
   const addItemToCart = (id) => {
     // Find the product by ID from the listOfProducts list
@@ -87,12 +70,14 @@ function Home({ listOfCartItems, setListOfCartItems }) {
         {listOfProducts.map((val) => {
           return (
             <div className="productContainer">
-              <div className="product">
-                <img className="product-image" src={`http://localhost:3001/images/${val.imageUrl}`} alt={"img unavailable"}/>
-                <h3> {val.brand} {val.model}</h3>
-                <h4> ${val.price} </h4>
-              </div>
-              <button className="add-to-cart-button" onClick={() => addItemToCart(val._id)}> Add to cart </button>
+              <Link to={`/product/${val._id}`}>
+                <div className="product">
+                  <img className="product-image" src={`http://localhost:3001/images/${val.imageUrl}`} alt={"img unavailable"}/>
+                  <h3> {val.brand} {val.model} </h3>
+                  <h4> ${val.price} </h4>
+                </div>
+                <button className="add-to-cart-button" onClick={() => addItemToCart(val._id)}> Add to cart </button>
+              </Link>
             </div>
           );
         })}

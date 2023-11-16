@@ -5,10 +5,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Cart from "./components/Cart/Cart";
+import Product from "./components/Product/Product";
 
 function App() {
   // STATES
   const [listOfCartItems, setListOfCartItems] = useState([]);
+  const [listOfProducts, setListOfProducts] = useState([]);
 
   // FUNCTIONS
   // useEffect function to send a get request to insert all cart items into listOfCartItems
@@ -27,6 +29,24 @@ function App() {
     fetchCartItems();
   }, []); // Empty dependency array ensures this effect runs once after the initial render
 
+
+  // useEffect function to send a get request to insert all products into listOfProducts array
+  useEffect(() => {
+    // Function to fetch products
+    const fetchProducts = async () => {
+      try {
+        const response = await Axios.get("http://localhost:3001/getProducts");
+        setListOfProducts(response.data);
+      } catch (err) {
+        alert("Failed to fetch list of products");
+      }
+    };
+
+    // Call the fetchProducts function
+    fetchProducts();
+  }, []); // Empty dependency array ensures this effect runs once after the initial render
+
+
   // APP
   return (
     <Router>
@@ -35,10 +55,13 @@ function App() {
         <div className="content">
           <Routes>
             {/* Route for Home page */}
-            <Route path="/" element={<Home listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems}/>} />
+            <Route path="/" element={<Home listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems} listOfProducts={listOfProducts} setListOfProducts={setListOfProducts} />} />
 
             {/* Route for Cart page */}
             <Route path="cart" element={<Cart listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems}/>} />
+
+            {/* Route for Product page */}
+            <Route path="product/:productId" element={<Product listOfProducts={listOfProducts} />} />
           </Routes>
         </div>
       </div>
@@ -66,9 +89,10 @@ export default App;
 // x In Cart.js, create a add one more button
 // x Work on the css for the Home page
 // x Work on the css for the Navbar
-// - Add the Hermanmiller logo at the center of the Navbar
+// x Add the Hermanmiller logo at the center of the Navbar
 // - Style the Cart page
-// Use React router to make a Product page that the user can navigate to by clicking on the product card from either Home or Cart page
+// - Use React router to make a Product page that the user can navigate to by clicking on the product card from either Home or Cart page
+// - Fix the link styling on the Home page
 // - Use Google login
 
 
@@ -77,3 +101,4 @@ export default App;
 // Future ideas
 // - If you are on the homepage, Home should be highlighted in the navbar
 // - Add a cart logo
+// Add a search bar at the top so that the user can search for a specific chair
