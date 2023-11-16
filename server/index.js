@@ -6,6 +6,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Serve static files
+app.use('/images', express.static('images'));
 
 // Give access to the Product Model
 const ProductModel = require('./models/Product');

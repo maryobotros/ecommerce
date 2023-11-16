@@ -64,3 +64,5 @@ export default App;
 //    x If the cart item has a quatity of 1, just delete it
 //    x Otherwise, decrement the quantity value
 // x In Cart.js, create a add one more button
+// x Work on the css for the Home page
+// - Work on the css for the Navbar

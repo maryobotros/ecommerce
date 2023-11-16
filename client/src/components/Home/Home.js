@@ -89,9 +89,11 @@ function Home({ listOfCartItems, setListOfCartItems }) {
           return (
             <div className="productContainer">
               <div className="product">
-                <h3> Model: {val.model} </h3>
+                <img className="product-image" src={`http://localhost:3001/images/${val.imageUrl}`} alt={"img unavailable"}/>
+                <h3> {val.brand} </h3>
+                <h3> {val.model} </h3>
               </div>
-              <button onClick={() => addItemToCart(val._id)}> Add to cart </button>
+              <button className="add-to-cart-button" onClick={() => addItemToCart(val._id)}> Add to cart </button>
             </div>
           );
         })}
