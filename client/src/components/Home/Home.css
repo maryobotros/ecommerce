@@ -13,6 +13,19 @@
     border: 2px solid #8f8f8f;
     padding: 20px;
     border-radius: 10px;
+
+    transition: background-color 0.4s ease;
+  }
+
+  .productContainer a {
+    text-decoration: none; /* Remove underline from links */
+    color: rgb(0, 0, 0); /* Text color for links */
+    margin: 0 10px; /* Spacing between links */
+  }
+
+  .productContainer:hover {
+    background-color: rgb(207, 207, 207);
+    border: 2px solid black;
   }
   
   .product {
@@ -30,7 +43,7 @@
     border-radius: 8px;
     padding: 5px;
 
-    transition: background-color 0.4s ease;
+    transition: background-color 0.3s ease;
   }
 
   .add-to-cart-button:hover {

@@ -76,8 +76,8 @@ function Home({ listOfCartItems, setListOfCartItems, listOfProducts, setListOfPr
                   <h3> {val.brand} {val.model} </h3>
                   <h4> ${val.price} </h4>
                 </div>
-                <button className="add-to-cart-button" onClick={() => addItemToCart(val._id)}> Add to cart </button>
               </Link>
+                <button className="add-to-cart-button" onClick={() => addItemToCart(val._id)}> Add to cart </button>
             </div>
           );
         })}
