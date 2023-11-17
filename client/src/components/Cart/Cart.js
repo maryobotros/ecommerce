@@ -79,7 +79,7 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
   // APP
   return (
     <div className="cart">
-      <h1>Cart page</h1>
+      <h1>Cart</h1>
 
       {/* Cart Items List */}
       <div className="listOfCartItems">
@@ -91,8 +91,8 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
                 <h2> Model: {val.model} </h2>
                 <h4> Quantity: {val.quantity} </h4>
               </div>
-              <button onClick={() => deleteCartItem(val._id)}>Delete</button>
-              <button onClick={() => addOneMore(val._id)}>Add one more</button>
+              <button className="add-one-more-button" onClick={() => addOneMore(val._id)}>Add one more</button>
+              <button className="delete-button" onClick={() => deleteCartItem(val._id)}>Delete</button>
             </div>
           );
         })}

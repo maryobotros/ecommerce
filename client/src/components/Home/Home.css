@@ -41,7 +41,7 @@
     background-color: rgb(8, 87, 152);
     color: white;
     border-radius: 8px;
-    padding: 5px;
+    padding: 7px;
 
     transition: background-color 0.3s ease;
   }
