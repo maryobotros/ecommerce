@@ -26,7 +26,7 @@ const ProductSchema = new mongoose.Schema({
     imageUrl: {
         type: String,
         required: true,
-    },
+    }
 });
 
 // Create a variable out of the schema

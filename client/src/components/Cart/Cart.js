@@ -87,6 +87,7 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
           return (
             <div className="cartItemContainer">
               <div className="cartItem">
+                <img className="product-image" src={`http://localhost:3001/images/${val.imageUrl}`} alt={"img unavailable"}/>
                 <h2> Model: {val.model} </h2>
                 <h4> Quantity: {val.quantity} </h4>
               </div>

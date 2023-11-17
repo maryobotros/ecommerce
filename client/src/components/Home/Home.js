@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import Axios from "axios";
 
-function Home({ listOfCartItems, setListOfCartItems, listOfProducts, setListOfProducts }) {
+function Home({ listOfCartItems, setListOfCartItems, listOfProducts, setListOfProducts}) {
   // STATES
 
   // FUNCTIONS
@@ -46,7 +46,8 @@ function Home({ listOfCartItems, setListOfCartItems, listOfProducts, setListOfPr
             brand: productToAddToCart.brand,
             color: productToAddToCart.color,
             price: productToAddToCart.price,
-            quantity: 1
+            quantity: 1,
+            imageUrl: productToAddToCart.imageUrl
         })
             .then((response) => {
                 // Update state based on the response data from the server
@@ -59,6 +60,7 @@ function Home({ listOfCartItems, setListOfCartItems, listOfProducts, setListOfPr
             });
     }
   };
+  
 
   console.log("List of Cart Items: ", listOfCartItems);
   // APP

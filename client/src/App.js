@@ -46,6 +46,61 @@ function App() {
     fetchProducts();
   }, []); // Empty dependency array ensures this effect runs once after the initial render
 
+  
+  // Function to add an item to the cart
+  const addItemToCart = (id) => {
+    // Find the product by ID from the listOfProducts list
+    const productToAddToCart = listOfProducts.find((product) => product._id === id);
+
+    // Check if the product already exists in the cart list
+    const productIsInCart = listOfCartItems.find((cartItem) => cartItem.model === productToAddToCart.model);
+
+    // If the product is in the cart
+    if (productIsInCart) {
+        // Get the cart item's quantity
+        const newQuantity = productIsInCart.quantity + 1;
+
+        // Get the cart item's id
+        const cartItemId = productIsInCart._id;
+
+        // Increase the quantity on the backend
+        Axios.put(`http://localhost:3001/updateCartItem/${cartItemId}`, {quantity: newQuantity})
+          .then(() => {
+            // Increment the quantity of the item in listOfCartItems
+            setListOfCartItems((listOfCartItems).map((val) => {
+              return val.model === productIsInCart.model ? { ...val, quantity: val.quantity + 1 } : val;
+            }))
+
+            alert("Another " + productToAddToCart.model + " chair added to the cart");
+          })
+          .catch(() => {
+            alert("Failed to update cart");
+          });
+    }
+    // Otherwise if the product doesn't exist in the cart list
+    else {
+        // Create a new Cart item using the information from the product
+        Axios.post("http://localhost:3001/addToCart", {
+            productId: productToAddToCart._id,
+            model: productToAddToCart.model,
+            brand: productToAddToCart.brand,
+            color: productToAddToCart.color,
+            price: productToAddToCart.price,
+            quantity: 1,
+            imageUrl: productToAddToCart.imageUrl
+        })
+            .then((response) => {
+                // Update state based on the response data from the server
+                setListOfCartItems([...listOfCartItems, response.data]);
+
+                alert((productToAddToCart.model + " chair added to the cart"));
+            })
+            .catch(() => {
+                alert("Failed to add item to cart");
+            });
+    }
+  };
+
 
   // APP
   return (
@@ -55,13 +110,13 @@ function App() {
         <div className="content">
           <Routes>
             {/* Route for Home page */}
-            <Route path="/" element={<Home listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems} listOfProducts={listOfProducts} setListOfProducts={setListOfProducts} />} />
+            <Route path="/" element={<Home listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems} listOfProducts={listOfProducts} setListOfProducts={setListOfProducts} addItemToCart={addItemToCart}/>} />
 
             {/* Route for Cart page */}
             <Route path="cart" element={<Cart listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems}/>} />
 
             {/* Route for Product page */}
-            <Route path="product/:productId" element={<Product listOfProducts={listOfProducts} listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems}/>} />
+            <Route path="product/:productId" element={<Product listOfProducts={listOfProducts} listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems} addItemToCart={addItemToCart}/>} />
           </Routes>
         </div>
       </div>
@@ -103,6 +158,7 @@ export default App;
 
 
 // Future ideas
+// - Recenter the logo
 // - If you are on the homepage, Home should be highlighted in the navbar
 // - Add a cart logo
 // - Add a search bar at the top so that the user can search for a specific chair
