@@ -3,6 +3,10 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
 function Cart({ listOfCartItems, setListOfCartItems }) {
+  // VARIABLES
+  // Variable to keep track of total cost of cart
+  let totalCost = 0;
+  
   // STATES
 
 
@@ -84,18 +88,30 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
       {/* Cart Items List */}
       <div className="listOfCartItems">
         {listOfCartItems.map((val) => {
+          // Calculate the total cost of the items
+          {totalCost = totalCost + (val.price * val.quantity)}
+
           return (
             <div className="cartItemContainer">
               <div className="cartItem">
                 <img className="product-image" src={`http://localhost:3001/images/${val.imageUrl}`} alt={"img unavailable"}/>
                 <h2> Model: {val.model} </h2>
                 <h4> Quantity: {val.quantity} </h4>
+                <h4> Price per item: ${val.price} </h4>
+                <h4> Total price: ${val.price * val.quantity}</h4>
+                
               </div>
               <button className="add-one-more-button" onClick={() => addOneMore(val._id)}>Add one more</button>
               <button className="delete-button" onClick={() => deleteCartItem(val._id)}>Delete</button>
             </div>
+            
           );
         })}
+      </div>
+
+      {/* Total cost */}
+      <div>
+        <h2>Total Cart Price: ${totalCost}</h2>
       </div>
     </div>
   );

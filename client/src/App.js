@@ -145,13 +145,17 @@ export default App;
 // x Work on the css for the Home page
 // x Work on the css for the Navbar
 // x Add the Hermanmiller logo at the center of the Navbar
-// - Style the Cart page
-// - Use React router to make a Product page that the user can navigate to by clicking on the product card from either Home or Cart page
-//    - Add an "Add to cart" button at the bottom of the Product page
-//    - Compare how I pass in the id between the parent and child route, with the CMS project
-// - Fix the link styling on the Home page
+// x Style the Cart page
+// x Use React router to make a Product page that the user can navigate to by clicking on the product card from either Home or Cart page
+//    x Add an "Add to cart" button at the bottom of the Product page
+//    x Compare how I pass in the id between the parent and child route, with the CMS project
+// x Fix the link styling on the Home page
+// x Calculate the total price of the product in the cart
 // - Use Google login
 // - Remove banner alerts and replace them with animations
+// - Add the ability to navigate to the product page from the cart page by clicking on the product
+// - Fix styling of navbar to make it responsive
+// - 
 
 
 
@@ -164,4 +168,3 @@ export default App;
 // - Add a search bar at the top so that the user can search for a specific chair
 // - Lock the navbar
 // - Change the navbar elements so that they don't look like buttons
-// -

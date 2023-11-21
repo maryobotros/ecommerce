@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
-function Product({ listOfProducts, setListOfCartItems, listOfCartItems, addItemToCart}) {
+function Product({ listOfProducts, setListOfCartItems, listOfCartItems, addItemToCart }) {
     // Get the productId and convert it into a number
     const { productId } = useParams();
     const productIdNumber = parseInt(productId, 10); // Convert to a number using parseInt

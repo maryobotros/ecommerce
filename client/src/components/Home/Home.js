@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import Axios from "axios";
 
-function Home({ listOfCartItems, setListOfCartItems, listOfProducts, setListOfProducts}) {
+function Home({ listOfCartItems, setListOfCartItems, listOfProducts, setListOfProducts }) {
   // STATES
 
   // FUNCTIONS
