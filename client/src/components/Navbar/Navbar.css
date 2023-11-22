@@ -41,4 +41,8 @@
     color: rgb(0, 0, 0); /* Text color for links */
     margin: 0 10px; /* Spacing between links */
   }
+
+  .navbar h1.isActive {
+    background-color: rgb(255, 0, 72);
+  }
   

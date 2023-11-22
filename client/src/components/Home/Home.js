@@ -79,7 +79,7 @@ function Home({ listOfCartItems, setListOfCartItems, listOfProducts, setListOfPr
                   <h4> ${val.price} </h4>
                 </div>
               </Link>
-                <button className="add-to-cart-button" onClick={() => addItemToCart(val._id)}> Add to cart </button>
+              <button className="add-to-cart-button" onClick={() => addItemToCart(val._id)}> Add to cart </button>
             </div>
           );
         })}

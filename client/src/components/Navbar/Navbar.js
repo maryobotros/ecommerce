@@ -1,7 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
+    const location = useLocation();
+
+    const isActive = (path) => {
+        return location.pathname === path ? 'isActive' : null;
+    }
+
     return (
         <nav className="navbar">
             <div className="logo-image">
@@ -10,10 +16,10 @@ function Navbar() {
                 </Link>
             </div>
             
-            <h1>
+            <h1 className={isActive('/')}>
                 <Link to="/">Home</Link>
             </h1>
-            <h1>
+            <h1 className={isActive('/cart')}>
                 <Link to="/cart">Cart</Link>
             </h1>
         </nav>
