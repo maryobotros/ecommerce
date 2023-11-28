@@ -155,7 +155,8 @@ export default App;
 // - Remove banner alerts and replace them with animations
 // - Add the ability to navigate to the product page from the cart page by clicking on the product
 // - Fix styling of navbar to make it responsive
-// - Add number of items in cart
+// x Add number of items in cart
+// - Add number of items to cart tab on navbar
 // - 
 
 
