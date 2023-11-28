@@ -6,6 +6,7 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
   // VARIABLES
   // Variable to keep track of total cost of cart
   let totalCost = 0;
+  let totalItemsInCart = 0;
   
   // STATES
 
@@ -83,13 +84,14 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
   // APP
   return (
     <div className="cart">
-      <h1>Cart</h1>
+      <h1>Cart ({totalItemsInCart})</h1>
 
       {/* Cart Items List */}
       <div className="listOfCartItems">
         {listOfCartItems.map((val) => {
           // Calculate the total cost of the items
           {totalCost = totalCost + (val.price * val.quantity)}
+          {totalItemsInCart += val.quantity}
 
           return (
             <div className="cartItemContainer">
@@ -112,6 +114,7 @@ function Cart({ listOfCartItems, setListOfCartItems }) {
       {/* Total cost */}
       <div>
         <h2>Total Cart Price: ${totalCost}</h2>
+        <h2>Number of items: {totalItemsInCart}</h2>
       </div>
     </div>
   );
