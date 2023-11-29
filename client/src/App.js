@@ -11,6 +11,25 @@ function App() {
   // STATES
   const [listOfCartItems, setListOfCartItems] = useState([]);
   const [listOfProducts, setListOfProducts] = useState([]);
+  const [totalCost, setTotalCost] = useState(0); //  Used to calculate the total cost of the cart
+  const [totalItemsInCart, setTotalItemsInCart] = useState(0); // Used to count number of items in the cart
+
+
+  // EFFECTS
+  useEffect(() => {
+    // Calculate total cost an total items whenever listOfCartItems changes
+    let cost = 0;
+    let totalItems = 0;
+
+    listOfCartItems.map((val) => {
+      cost = cost + (val.price * val.quantity);
+      totalItems += val.quantity;
+    });
+
+    setTotalCost(cost);
+    setTotalItemsInCart(totalItems);
+  }, [listOfCartItems]);
+
 
   // FUNCTIONS
   // useEffect function to send a get request to insert all cart items into listOfCartItems
@@ -106,14 +125,14 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar totalItemsInCart={totalItemsInCart}/>
         <div className="content">
           <Routes>
             {/* Route for Home page */}
             <Route path="/" element={<Home listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems} listOfProducts={listOfProducts} setListOfProducts={setListOfProducts} addItemToCart={addItemToCart}/>} />
 
             {/* Route for Cart page */}
-            <Route path="cart" element={<Cart listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems}/>} />
+            <Route path="cart" element={<Cart listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems} totalCost={totalCost} setTotalCost={setTotalCost} totalItemsInCart={totalItemsInCart} setTotalItemsInCart={setTotalItemsInCart}/>} />
 
             {/* Route for Product page */}
             <Route path="product/:productId" element={<Product listOfProducts={listOfProducts} listOfCartItems={listOfCartItems} setListOfCartItems={setListOfCartItems} addItemToCart={addItemToCart}/>} />

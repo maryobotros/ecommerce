@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({ totalItemsInCart }) {
     const location = useLocation();
 
     const isActive = (path) => {
@@ -20,7 +20,7 @@ function Navbar() {
                 <Link to="/">Home</Link>
             </h1>
             <h1 className={isActive('/cart')}>
-                <Link to="/cart">Cart</Link>
+                <Link to="/cart">Cart ({totalItemsInCart}) </Link>
             </h1>
         </nav>
     )

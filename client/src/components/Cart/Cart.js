@@ -2,30 +2,12 @@ import "./Cart.css";
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
-function Cart({ listOfCartItems, setListOfCartItems }) {
+function Cart({ listOfCartItems, setListOfCartItems, totalItemsInCart, totalCost }) {
   // VARIABLES
-  // Variable to keep track of total cost of cart
-  // let totalCost = 0; 55555
-  // let totalItemsInCart = 0;
   
   // STATES
-  const [totalCost, setTotalCost] = useState(0);
-  const [totalItemsInCart, setTotalItemsInCart] = useState(0);
 
   // EFFECTS
-  useEffect(() => {
-    // Calculate total cost an total items whenever listOfCartItems changes
-    let cost = 0;
-    let totalItems = 0;
-
-    listOfCartItems.map((val) => {
-      cost = cost + (val.price * val.quantity);
-      totalItems += val.quantity;
-    });
-
-    setTotalCost(cost);
-    setTotalItemsInCart(totalItems);
-  }, [listOfCartItems]);
 
   // FUNCTIONS
   // Function to delete items from the cart
