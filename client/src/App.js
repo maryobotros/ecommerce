@@ -14,10 +14,11 @@ function App() {
   const [totalCost, setTotalCost] = useState(0); //  Used to calculate the total cost of the cart
   const [totalItemsInCart, setTotalItemsInCart] = useState(0); // Used to count number of items in the cart
 
+ 
 
   // EFFECTS
+  // Calculate total cost for total items whenever listOfCartItems changes
   useEffect(() => {
-    // Calculate total cost an total items whenever listOfCartItems changes
     let cost = 0;
     let totalItems = 0;
 
@@ -31,7 +32,6 @@ function App() {
   }, [listOfCartItems]);
 
 
-  // FUNCTIONS
   // useEffect function to send a get request to insert all cart items into listOfCartItems
   useEffect(() => {
     // Function to fetch cartItems
@@ -65,7 +65,9 @@ function App() {
     fetchProducts();
   }, []); // Empty dependency array ensures this effect runs once after the initial render
 
+
   
+  // FUNCTIONS
   // Function to add an item to the cart
   const addItemToCart = (id) => {
     // Find the product by ID from the listOfProducts list
@@ -170,12 +172,17 @@ export default App;
 //    x Compare how I pass in the id between the parent and child route, with the CMS project
 // x Fix the link styling on the Home page
 // x Calculate the total price of the product in the cart
-// - Use Google login
-// - Remove banner alerts and replace them with animations
-// - Add the ability to navigate to the product page from the cart page by clicking on the product
-// - Fix styling of navbar to make it responsive
 // x Add number of items in cart
-// - Add number of items to cart tab on navbar
+// x Add number of items to cart tab on navbar
+// x If you are on the homepage, Home should be highlighted in the navbar
+// - Add a search function at the top to search for the chairs by model name
+// - Add the ability to sort the products on the Home page by price
+// - Add the ability to filter the products on the home page
+// - Simple updates
+//    - Use Google login
+//    - Remove banner alerts and replace them with animations
+//    - Add the ability to navigate to the product page from the cart page by clicking on the product
+//    - Fix styling of navbar to make it responsive
 // - 
 
 
@@ -184,7 +191,6 @@ export default App;
 
 // Future ideas
 // - Recenter the logo
-// - If you are on the homepage, Home should be highlighted in the navbar
 // - Add a cart logo
 // - Add a search bar at the top so that the user can search for a specific chair
 // - Lock the navbar
